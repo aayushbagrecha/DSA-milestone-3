@@ -13,20 +13,20 @@ public class SemManager {
 
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 3) {
-            System.err.println(
-                "Usage: java SemManager {initial-memory-size} {initial-hash-size} {command-file}");
-            System.exit(1);
-        }
+        // if (args.length != 3) {
+        // System.err.println(
+        // "Usage: java SemManager {initial-memory-size} {initial-hash-size}
+        // {command-file}");
+        // System.exit(1);
+        // }
 
-        int initialMemorySize = Integer.parseInt(args[0]);
-        int initialHashSize = Integer.parseInt(args[1]);
-        String commandFile = args[2];
+        // int initialMemorySize = Integer.parseInt(args[0]);
+        // int initialHashSize = Integer.parseInt(args[1]);
+        // String commandFile = args[2];
 
-// int initialMemorySize = 64;
-// int initialHashSize = 4;
-// String commandFile =
-// "C:\\Users\\hp\\Downloads\\DSA-milestone-3\\DSA-milestone-3\\src\\input.txt";
+        int initialMemorySize = 64;
+        int initialHashSize = 4;
+        String commandFile = "input.txt";
 
         SemManager semManager = new SemManager(initialMemorySize,
             initialHashSize);
@@ -82,7 +82,7 @@ public class SemManager {
         int cost = Short.parseShort(dateLine.split("\\s")[4]);
         String[] keywords = scanner.nextLine().trim().replaceAll("\\s+", " ")
             .split(" ");
-        String description = scanner.nextLine().trim().replaceAll("\\s+", " ");
+        String description = scanner.nextLine().trim();
 
         if (hashTable.search(id) != null) {
             System.out.println(

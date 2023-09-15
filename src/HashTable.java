@@ -18,7 +18,7 @@ public class HashTable {
         }
 
         int index = find(key); // find whether the element already exists or not
-                               // return -1 if it doesn't
+                               // return -1 if it doesnt
                                // return actual index if it does
 
         if (index == -1) { // this indicates that the element is not present
@@ -160,5 +160,4 @@ public class HashTable {
             this.isTombstone = false;
         }
     }
-
 }
