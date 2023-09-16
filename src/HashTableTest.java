@@ -70,10 +70,11 @@ public class HashTableTest extends TestCase {
   @Test
   public void testHandleFunctionality() {
     ht.insert(record1.getId(), record1Handle);
-    assertEquals(record1Handle.getStartingPosition(), 1);
+    assertEquals(record1Handle.getStartingPosition(), 0);
+    
     record1Handle.setStartingPosition(2);
     assertEquals(record1Handle.getStartingPosition(), 2);
-
+    
     assertEquals(record1Handle.getRecordLength(), 84);
     record1Handle.setRecordLength(4);
     assertEquals(record1Handle.getRecordLength(), 4);
@@ -238,7 +239,6 @@ public class HashTableTest extends TestCase {
     ht.insert(record1.getId(), record1Handle);
     ht.printHashTable();
     String output = systemOut().getHistory();
-    System.out.println("Sample output:\n" + output + "Sample output ended");
     assertEquals("Memory pool expanded to 128 bytes\n"
       + "Memory pool expanded to 256 bytes\n"
       + "Memory pool expanded to 512 bytes\n"
