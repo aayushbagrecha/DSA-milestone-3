@@ -1,12 +1,13 @@
 import java.io.*;
 
-/*@author Aayush Bagrecha
+/**
+ * @author Aayush Bagrecha
  * @author Yash Shrikant
  * @version 1.0
  *
  * 
- * The SeminarRecord class represents a seminar record and provides
- * methods for serialization and deserialization.
+ *          The SeminarRecord class represents a seminar record and provides
+ *          methods for serialization and deserialization.
  */
 public class SeminarRecord implements Serializable {
     private int id;

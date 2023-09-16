@@ -1,12 +1,15 @@
-/**@author Aayush Bagrecha
+/**
+ * @author Aayush Bagrecha
  * @author Yash Shrikant
  * @version 1.0
  *
-/*
- * The `MemManager` class is responsible for managing a memory pool,
- * allocating and deallocating memory blocks, and providing handles for data
- * insertion and retrieval. It ensures efficient utilization of memory by
- * dynamically expanding the memory pool when needed.
+ *          /*
+ *          The `MemManager` class is responsible for managing a memory pool,
+ *          allocating and deallocating memory blocks, and providing handles for
+ *          data
+ *          insertion and retrieval. It ensures efficient utilization of memory
+ *          by
+ *          dynamically expanding the memory pool when needed.
  */
 public class MemManager {
     private byte[] memoryPool;

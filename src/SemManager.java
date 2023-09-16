@@ -27,13 +27,14 @@ import java.util.Scanner;
  * @author Yash Shrikant
  * @version 1.0
  * 
- * The SemManager class manages seminar records using memory and a hash table.
+ *          The SemManager class manages seminar records using memory and a hash
+ *          table.
  */
 public class SemManager {
     private MemManager memoryManager;
     private HashTable hashTable;
-    public String[] args;  //Stores a string argument denoting 
-                           //the location of the input file
+    public String[] args; // Stores a string argument denoting
+                          // the location of the input file
 
     /**
      * Initializes a new instance of the SemManager class.

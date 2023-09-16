@@ -1,22 +1,24 @@
-/**@author Aayush Bagrecha
+/**
+ * @author Aayush Bagrecha
  * @author Yash Shrikant
  * @version 1.0
  */
-/*
+/**
  * The HashTable class represents a hash table data structure that stores
  * key-value pairs.
  * It provides methods for inserting, deleting, searching, and resizing the
  * table.
  */
 public class HashTable {
-    
     /**
-     * The array that represents the underlying data structure of the hash table.
-     * Entries are stored in this array to allow for efficient key-value pair storage
+     * The array that represents the underlying data structure of the hash
+     * table.
+     * Entries are stored in this array to allow for efficient key-value pair
+     * storage
      * and retrieval. Each element in this array may hold an Entry object, which
      * contains a key, a value, and a tombstone flag to handle deletions.
      */
-    public Entry[] table;  
+    public Entry[] table;
     private int capacity;
     private int size;
     private static final double LOAD_FACTOR = 0.5;
@@ -227,8 +229,10 @@ public class HashTable {
         Handle value;
 
         /**
-         * A flag indicating whether this entry has been marked as a tombstone. Tombstones
-         * represent entries that have been deleted from the hash table but still occupy
+         * A flag indicating whether this entry has been marked as a tombstone.
+         * Tombstones
+         * represent entries that have been deleted from the hash table but
+         * still occupy
          * a slot.
          */
         boolean isTombstone;

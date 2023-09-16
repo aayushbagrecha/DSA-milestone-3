@@ -1,9 +1,11 @@
-/**@author Aayush Bagrecha
+/**
+ * @author Aayush Bagrecha
  * @author Yash Shrikant
  * @version 1.0
  */
 
-/** The `Handle` class represents a handle to a specific data block in the
+/**
+ * The `Handle` class represents a handle to a specific data block in the
  * memory pool. It includes information about the starting position of the
  * data block and its length.
  */
