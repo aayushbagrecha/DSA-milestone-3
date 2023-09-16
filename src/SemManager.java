@@ -250,19 +250,4 @@ public class SemManager {
         // (i.e., it's a power of 2)
         return (number & (number - 1)) == 0;
     }
-
-
-    /**
-     * Checks if two numbers are both powers of two.
-     *
-     * @param num1
-     *            The first number to check.
-     * @param num2
-     *            The second number to check.
-     * @return {@code true} if both numbers are powers of two,
-     *         otherwise {@code false}.
-     */
-    public static boolean arePowersOfTwo(int num1, int num2) {
-        return isPowerOfTwo(num1) && isPowerOfTwo(num2);
-    }
 }

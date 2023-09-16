@@ -17,7 +17,7 @@ public class SemManagerTest extends TestCase {
     @Test
     public void testValidArguments() throws Exception {
 
-        String[] args = { "64", "4", "input.txt" };
+        String[] args = { "64", "4", "C:\\Users\\hp\\Downloads\\DSA-milestone-3\\DSA-milestone-3\\src\\input.txt" };
         SemManager.main(args);
     }
 
