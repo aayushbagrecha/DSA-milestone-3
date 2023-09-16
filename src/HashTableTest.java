@@ -71,13 +71,25 @@ public class HashTableTest extends TestCase {
   public void testHandleFunctionality() {
     ht.insert(record1.getId(), record1Handle);
     assertEquals(record1Handle.getStartingPosition(), 0);
-    
+
     record1Handle.setStartingPosition(2);
     assertEquals(record1Handle.getStartingPosition(), 2);
-    
+
     assertEquals(record1Handle.getRecordLength(), 84);
     record1Handle.setRecordLength(4);
     assertEquals(record1Handle.getRecordLength(), 4);
+  }
+
+
+  @Test
+  public void testSeminarRecord() {
+    ht.insert(record1.getId(), record1Handle);
+    assertEquals(record1.getX(), 10);
+    assertEquals(record1.getY(), 20);
+    assertEquals(record1.getLength(), 60);
+    assertEquals(record1.getKeywords(), new String[] { "Keyword1, Keyword2" });
+    assertNotNull(record1.deserialized(record1.serialize()));
+    assertNotNull(record1.toString());
   }
 
 
