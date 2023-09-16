@@ -1,9 +1,25 @@
+/**@author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
+ *
+/*
+ * The `MemManager` class is responsible for managing a memory pool,
+ * allocating and deallocating memory blocks, and providing handles for data
+ * insertion and retrieval. It ensures efficient utilization of memory by
+ * dynamically expanding the memory pool when needed.
+ */
 public class MemManager {
     private byte[] memoryPool;
     private int poolSize;
     private int freeBlockStart;
     private int freeBlockSize;
 
+    /**
+     * Constructs a new `MemManager` instance with an initial memory pool size.
+     *
+     * @param initialSize
+     *            The initial size of the memory pool.
+     */
     public MemManager(int initialSize) {
         memoryPool = new byte[initialSize];
         poolSize = initialSize;
@@ -12,6 +28,17 @@ public class MemManager {
     }
 
 
+    /**
+     * Inserts data into the memory pool and returns a handle to the inserted
+     * data. If the available free space is insufficient, it expands the memory
+     * pool.
+     *
+     * @param data
+     *            The data to be inserted.
+     * @param length
+     *            The length of the data to be inserted.
+     * @return A handle to the inserted data.
+     */
     public Handle insert(byte[] data, int length) {
         if (length > freeBlockSize) {
             expandMemoryPool(length);
@@ -26,6 +53,16 @@ public class MemManager {
     }
 
 
+    /**
+     * Retrieves data from the memory pool using a provided handle and length.
+     *
+     * @param output
+     *            The byte array where the retrieved data will be placed.
+     * @param handle
+     *            The handle to the data in the memory pool.
+     * @param length
+     *            The length of data to retrieve.
+     */
     public void get(byte[] output, Handle handle, int length) {
         if (handle != null && handle.getRecordLength() == length) {
             System.arraycopy(memoryPool, handle.getStartingPosition(), output,
@@ -34,6 +71,12 @@ public class MemManager {
     }
 
 
+    /**
+     * Removes data from the memory pool associated with the given handle.
+     *
+     * @param handle
+     *            The handle to the data to be removed.
+     */
     public void remove(Handle handle) {
         if (handle != null) {
             int blockIndex = handle.getStartingPosition();
@@ -72,32 +115,4 @@ public class MemManager {
         // Update the freeBlockSize to account for the additional space
         freeBlockSize = poolSize - freeBlockStart;
     }
-
-
-    public void dump() {
-        System.out.println("Memory Pool Dump:");
-        System.out.println("Pool Size: " + memoryPool.length);
-        System.out.println("Free Block Start: " + freeBlockStart);
-        System.out.println("Free Block Size: " + freeBlockSize);
-    }
-
-
-    public void printFreeBlocks() {
-        System.out.println("Freeblock List:");
-
-        int currentBlockStart = freeBlockStart;
-        int currentBlockEnd = freeBlockStart + freeBlockSize;
-
-        while (currentBlockStart < poolSize) {
-            int blockIndex = currentBlockStart;
-            int blockSize = currentBlockEnd - currentBlockStart;
-
-            System.out.println(blockIndex + ": " + blockSize);
-
-            // Move to the next block
-            currentBlockStart = currentBlockEnd;
-            currentBlockEnd = currentBlockStart + freeBlockSize;
-        }
-    }
-
 }

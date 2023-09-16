@@ -1,2 +1,0 @@
-Memory pool expanded to 128 bytes
-Memory pool expanded to 256 bytes

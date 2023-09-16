@@ -1,5 +1,13 @@
 import java.io.*;
 
+/*@author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
+ *
+ * 
+ * The SeminarRecord class represents a seminar record and provides
+ * methods for serialization and deserialization.
+ */
 public class SeminarRecord implements Serializable {
     private int id;
     private String title;
@@ -11,6 +19,28 @@ public class SeminarRecord implements Serializable {
     private String[] keywords;
     private int cost;
 
+    /**
+     * Initializes a new instance of the SeminarRecord class.
+     *
+     * @param id
+     *            The ID of the seminar record.
+     * @param title
+     *            The title of the seminar.
+     * @param dateTime
+     *            The date and time of the seminar.
+     * @param length
+     *            The length of the seminar.
+     * @param x
+     *            The X-coordinate of the seminar location.
+     * @param y
+     *            The Y-coordinate of the seminar location.
+     * @param cost
+     *            The cost of the seminar.
+     * @param description
+     *            The description of the seminar.
+     * @param keywords
+     *            The keywords associated with the seminar.
+     */
     public SeminarRecord(
         int id,
         String title,
@@ -32,54 +62,106 @@ public class SeminarRecord implements Serializable {
         this.keywords = keywords;
     }
 
-    // Getter methods for all attributes
 
-
+    /**
+     * Gets the ID of the seminar record.
+     *
+     * @return The ID of the seminar record.
+     */
     public int getId() {
         return id;
     }
 
 
+    /**
+     * Gets the title of the seminar.
+     *
+     * @return The title of the seminar.
+     */
     public String getTitle() {
         return title;
     }
 
 
+    /**
+     * Gets the date and time of the seminar.
+     *
+     * @return The date and time of the seminar.
+     */
     public String getDateTime() {
         return dateTime;
     }
 
 
+    /**
+     * Gets the length of the seminar.
+     *
+     * @return The length of the seminar.
+     */
     public int getLength() {
         return length;
     }
 
 
+    /**
+     * Gets the X-coordinate of the seminar location.
+     *
+     * @return The X-coordinate of the seminar location.
+     */
     public short getX() {
         return x;
     }
 
 
+    /**
+     * Gets the Y-coordinate of the seminar location.
+     *
+     * @return The Y-coordinate of the seminar location.
+     */
     public short getY() {
         return y;
     }
 
 
+    /**
+     * Gets the description of the seminar.
+     *
+     * @return The description of the seminar.
+     */
     public String getDescription() {
         return description;
     }
 
 
+    /**
+     * Gets the keywords associated with the seminar.
+     *
+     * @return The keywords associated with the seminar.
+     */
     public String[] getKeywords() {
         return keywords;
     }
 
 
+    /**
+     * Gets the cost of the seminar.
+     *
+     * @return The cost of the seminar.
+     */
     public int getCost() {
         return cost;
     }
 
 
+    /**
+     * Deserializes a byte array into a SeminarRecord object.
+     *
+     * @param inputbytes
+     *            The byte array to deserialize.
+     * @return The deserialized SeminarRecord object.
+     * @throws Exception
+     *             If an error occurs during deserialization.
+     */
     public static SeminarRecord deserialize(byte[] inputbytes)
         throws Exception {
         ByteArrayInputStream bis = new ByteArrayInputStream(inputbytes);
@@ -106,14 +188,13 @@ public class SeminarRecord implements Serializable {
     }
 
 
-    // ----------------------------------------------------------
     /**
-     * Return the cannonical serialized form (as a byte array) for this seminar
-     * object
+     * Serializes the SeminarRecord object into a byte array.
      *
-     * @return the byte array that is the serialization of this
+     * @return The serialized byte array representation of the
+     *         SeminarRecord object.
      * @throws Exception
-     *             from serialization
+     *             If an error occurs during serialization.
      */
     public byte[] serialize() throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -139,7 +220,9 @@ public class SeminarRecord implements Serializable {
 
 
     /**
-     * @return a string representation of the object.
+     * Returns a string representation of the SeminarRecord object.
+     *
+     * @return A string representation of the SeminarRecord object.
      */
     public String toString() {
         int i;

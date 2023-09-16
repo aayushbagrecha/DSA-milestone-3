@@ -1,32 +1,73 @@
+
+/**
+ * On my honor:
+ * - I have not used source code obtained from another current or
+ * former student, or any other unauthorized source, either
+ * modified or unmodified.
+ * - All source code and documentation used in my program is
+ * either my original work, or was derived by me from the
+ * source code published in the textbook for this course.
+ * - I have not discussed coding details about this project with
+ * anyone other than my partner (in the case of a joint
+ * submission), instructor, ACM/UPE tutors, or the TAs assigned
+ * to this course. I understand that I may discuss the concepts
+ * of this program with other students, and that another student
+ * may help me debug my program so long as neither of us writes
+ * anything during the discussion or modifies any computer file
+ * during the discussion. I have violated neither the spirit nor
+ * letter of this restriction.
+ *
+ */
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
+ * 
+ * The SemManager class manages seminar records using memory and a hash table.
+ */
 public class SemManager {
     private MemManager memoryManager;
     private HashTable hashTable;
+    public String[] args;  //Stores a string argument denoting 
+                           //the location of the input file
 
+    /**
+     * Initializes a new instance of the SemManager class.
+     *
+     * @param initialMemorySize
+     *            The initial size of memory.
+     * @param initialHashSize
+     *            The initial size of the hash table.
+     */
     public SemManager(int initialMemorySize, int initialHashSize) {
         memoryManager = new MemManager(initialMemorySize);
         hashTable = new HashTable(initialHashSize);
     }
 
 
+    /**
+     * The entry point of the program.
+     *
+     * @param args
+     *            Command-line arguments containing initial memory size,
+     *            initial hash size, and a command file.
+     * @throws Exception
+     *             If an error occurs during program execution.
+     */
     public static void main(String[] args) throws Exception {
-        // if (args.length != 3) {
-        // System.err.println(
-        // "Usage: java SemManager {initial-memory-size} {initial-hash-size}
-        // {command-file}");
-        // System.exit(1);
-        // }
+        if (args.length != 3) {
+            System.err.println("Usage: java SemManager {initial-memory-size}"
+                + " {initial-hash-size} {command-file}");
+            System.exit(1);
+        }
 
-        // int initialMemorySize = Integer.parseInt(args[0]);
-        // int initialHashSize = Integer.parseInt(args[1]);
-        // String commandFile = args[2];
-
-        int initialMemorySize = 64;
-        int initialHashSize = 4;
-        String commandFile = "input.txt";
+        int initialMemorySize = Integer.parseInt(args[0]);
+        int initialHashSize = Integer.parseInt(args[1]);
+        String commandFile = args[2];
 
         SemManager semManager = new SemManager(initialMemorySize,
             initialHashSize);
@@ -34,13 +75,19 @@ public class SemManager {
     }
 
 
-    private void processCommands(String commandFile) throws Exception {
+    /**
+     * Processes commands from a command file.
+     *
+     * @param commandFile
+     *            The path to the command file.
+     * @throws Exception
+     *             If an error occurs while processing commands.
+     */
+    public void processCommands(String commandFile) throws Exception {
         try (Scanner scanner = new Scanner(new File(commandFile))) {
             while (scanner.hasNextLine()) {
                 String command = scanner.nextLine().trim().replaceAll("\\s+",
                     " ");
-
-                // System.out.println(command);
 
                 if (command.startsWith("insert")) {
                     int id = Integer.parseInt(command.split("\\s")[1]);
@@ -71,6 +118,16 @@ public class SemManager {
     }
 
 
+    /**
+     * Processes the "insert" command to add a seminar record.
+     *
+     * @param scanner
+     *            The scanner for reading input.
+     * @param id
+     *            The ID of the seminar record to insert.
+     * @throws Exception
+     *             If an error occurs during insertion.
+     */
     private void processInsertCommand(Scanner scanner, int id)
         throws Exception {
         String title = scanner.nextLine().trim();
@@ -115,12 +172,18 @@ public class SemManager {
         else
             System.out.println(
                 "Insert FAILED - There is already a record with ID " + id);
-
     }
 
 
+    /**
+     * Processes the "delete" command to remove a seminar record.
+     *
+     * @param scanner
+     *            The scanner for reading input.
+     * @param id
+     *            The ID of the seminar record to delete.
+     */
     private void processDeleteCommand(Scanner scanner, int id) {
-
         // Check if the key exists in the hash table
         Handle handle = hashTable.search(id);
         if (handle != null) {
@@ -140,9 +203,18 @@ public class SemManager {
     }
 
 
+    /**
+     * Processes the "search" command to find and display a seminar record.
+     *
+     * @param scanner
+     *            The scanner for reading input.
+     * @param id
+     *            The ID of the seminar record to search for.
+     * @throws Exception
+     *             If an error occurs during searching.
+     */
     private void processSearchCommand(Scanner scanner, int id)
         throws Exception {
-
         // Search for the record in the hash table
         Handle handle = hashTable.search(id);
         if (handle != null) {
@@ -158,5 +230,39 @@ public class SemManager {
             System.out.println("Search FAILED -- There is no record with ID "
                 + id);
         }
+    }
+
+
+    /**
+     * Checks if a number is a power of two.
+     *
+     * @param number
+     *            The number to check.
+     * @return {@code true} if the number is a power of two,
+     *         otherwise {@code false}.
+     */
+    public static boolean isPowerOfTwo(int number) {
+        if (number <= 0) {
+            return false;
+        }
+
+        // Check if the number has only one bit set to 1
+        // (i.e., it's a power of 2)
+        return (number & (number - 1)) == 0;
+    }
+
+
+    /**
+     * Checks if two numbers are both powers of two.
+     *
+     * @param num1
+     *            The first number to check.
+     * @param num2
+     *            The second number to check.
+     * @return {@code true} if both numbers are powers of two,
+     *         otherwise {@code false}.
+     */
+    public static boolean arePowersOfTwo(int num1, int num2) {
+        return isPowerOfTwo(num1) && isPowerOfTwo(num2);
     }
 }
